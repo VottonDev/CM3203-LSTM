@@ -1,0 +1,29 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@apperate/iexjs": "^0.9.1",
+    "@hapi/cookie": "^12.0.0",
+    "@hapi/hapi": "^21.2.1",
+    "@prisma/client": "^4.13.0",
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "eventsource": "^2.0.2",
+    "nodemailer": "^6.9.1"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "start": "nodemon ./build/api-server.js",
+    "prettify": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/eventsource": "^1.1.11",
+    "@types/hapi__cookie": "^12.0.1",
+    "@types/node": "^18.11.19",
+    "@types/nodemailer": "^6.4.7",
+    "prettier": "^2.8.3",
+    "prisma": "^4.13.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  }
+}

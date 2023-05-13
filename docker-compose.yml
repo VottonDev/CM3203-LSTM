@@ -1,0 +1,27 @@
+version: "3.3"
+services:
+  cm3203-api:
+    container_name: cm3203-pi
+    hostname: api.local
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.api
+    ports:
+      - "3000:3000"
+    networks:
+      - cm3203-net
+
+  cm3203-web:
+    container_name: cm3203-web
+    hostname: web.local
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.web
+    ports:
+      - "4173:4173"
+    networks:
+      - cm3203-net
+
+networks:
+  cm3203-net:
+    driver: bridge

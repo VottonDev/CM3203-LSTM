@@ -1,0 +1,23 @@
+{
+  "type": "module",
+  "name": "ml",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "nodemon ./build/api-server.js",
+    "prettify": "prettier --write ."
+  },
+  "author": "Otto Hooper",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.14.6",
+    "prettier": "^2.8.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "brain.js": "^2.0.0-beta.18"
+  }
+}

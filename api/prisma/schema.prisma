@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  password String
+  tokens   Token[]
+  verified Boolean @default(false)
+}
+
+model Token {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  valid      Boolean  @default(true)
+  emailToken String?  @unique
+  expiration DateTime
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+}
+
+model Stock {
+  id           Int               @id @default(autoincrement())
+  name         String            @unique
+  prices       HistoricalPrice[]
+  CurrentPrice CurrentPrice[]
+  Prediction   Prediction[]
+}
+
+model HistoricalPrice {
+  id        Int      @id @default(autoincrement())
+  priceDate DateTime
+  open      Float
+  high      Float
+  low       Float
+  close     Float
+  volume    Int
+  stock     Stock    @relation(fields: [stockId], references: [id])
+  stockId   Int
+}
+
+model CurrentPrice {
+  id             Int      @id @default(autoincrement())
+  latestTime     DateTime
+  latestPrice    Float
+  open           Float
+  high           Float
+  low            Float
+  close          Float
+  volume         Int
+  avgTotalVolume Int
+  previousClose  Float
+  week52High     Float
+  week52Low      Float
+  ytdChange      Float
+  stock          Stock    @relation(fields: [stockId], references: [id])
+  stockId        Int
+}
+
+model Prediction {
+  id               Int      @id @default(autoincrement())
+  createdAt        DateTime @default(now())
+  value            Float
+  stock            Stock    @relation(fields: [stockId], references: [id])
+  stockId          Int
+  typeOfPrediction String
+}
